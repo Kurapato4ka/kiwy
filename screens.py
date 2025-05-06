@@ -112,8 +112,7 @@ class Scr_02(Root, Screen):
 
 
     def setCMD(self):
-        pass
-
+        self.btn.on_press = lambda: self.controller.command(('next_03', ))
 
 
 
@@ -158,7 +157,7 @@ class Scr_03(Root, Screen):
 
 
     def setCMD(self):
-        pass
+        self.btn.on_press = lambda: self.controller.command(('next_04', (self.write.text, self.write1.text)))
 
 
 
@@ -186,6 +185,7 @@ class Scr_04(Root, Screen):
         pass
 
     def stage_00(self, arg):
+        get = self.resources.get
         index, line = arg
         self.txt.text = get('txt_index') + str(index)
         self.txt1.text = get('txt_workheart') + get('txt_res')[line]

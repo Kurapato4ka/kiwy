@@ -28,8 +28,9 @@ class View(Root):
     def stage_03(self):
         self.app.sm.current = self.scr_03.name
 
-    def stage_04(self):
+    def stage_04(self, arg):
         self.app.sm.current = self.scr_04.name
+        self.scr_04.stage_00(arg)
 
     def stage_error(self, arg):
         error = Error(arg)
