@@ -58,6 +58,18 @@ class Controller(Root):
         elif cmd == 'timer_00':
             self.view.stage_10(arg)
             
+        elif cmd == 'timer_01_start':
+            self.model.timer_01.start()
+            
+        elif cmd == 'timer_01':
+            self.view.stage_11(arg)
+            
+        elif cmd == 'timer_02_start':
+            self.model.timer_02.start()
+            
+        elif cmd == 'timer_02':
+            self.view.stage_12(arg)
+            
         
 
         

@@ -37,6 +37,12 @@ class View(Root):
     
     def stage_10(self, arg):
         self.scr_01.stage_00(arg)
+    
+    def stage_11(self, arg):
+        self.scr_02.stage_00(arg)
+        
+    def stage_12(self, arg):
+        self.scr_03.stage_00(arg)
 
     def stage_error(self, arg):
         error = Error(arg)

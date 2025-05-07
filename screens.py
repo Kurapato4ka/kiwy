@@ -124,7 +124,16 @@ class Scr_02(Root, Screen):
 
     def setCMD(self):
         self.btn.on_press = lambda: self.controller.command(('next_03', ))
-
+        self.btn1.on_press = lambda: self.controller.command(('timer_01_start',))
+    
+    def stage_00(self, arg):
+        if arg:
+            count = arg[0]
+            print(arg)
+            color = arg[1]
+            self.txt2.text = str(count)
+        else:
+            self.txt2.text = ''
 
 
 class Scr_03(Root, Screen):
@@ -169,7 +178,20 @@ class Scr_03(Root, Screen):
 
     def setCMD(self):
         self.btn.on_press = lambda: self.controller.command(('next_04', (self.write.text, self.write1.text)))
-
+        self.btn1.on_press = lambda: self.controller.command(('timer_02_start',))
+    
+    def stage_00(self, arg):
+        if arg:
+            count = arg[0]
+            print(arg)
+            color = arg[1]
+            if color == 1:
+                self.txt3.font_color = (0,0.8,0, 1)
+            elif color == 0:
+                self.txt3.font_color = (1,1,1,1)
+            self.txt3.text = str(count)
+        else:
+            self.txt3.text = ''
 
 
 class Scr_04(Root, Screen):

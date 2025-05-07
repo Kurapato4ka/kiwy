@@ -5,7 +5,9 @@ from kivy.clock import Clock
 class Model(Root):
     def __init__(self):
         self.ruffier = self.Ruffier()
-        self.timer_00 = self.Timer("timer_00",[(15, 1, -1, 0.25, 0)])
+        self.timer_00 = self.Timer("timer_00",[(15, 1, -1, 1, 0)])
+        self.timer_01 = self.Timer("timer_01",[(1, 30, 1, 1.5, 0)])
+        self.timer_02 = self.Timer("timer_02",[(60, 45 , -1, 1, 1), (44, 16 , -1, 1, 0), (15, 1 , -1, 1, 1)])
 
     
     class Ruffier:
