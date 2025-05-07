@@ -51,7 +51,13 @@ class Controller(Root):
                     self.view.stage_error(check_pulse[0])       
             else:
                 self.view.stage_error(check_pulse[0])
- 
+            
+        elif cmd == 'timer_00_start':
+            self.model.timer_00.start()
+            
+        elif cmd == 'timer_00':
+            self.view.stage_10(arg)
+            
         
 
         

@@ -5,6 +5,7 @@ from kivy.clock import Clock
 class Model(Root):
     def __init__(self):
         self.ruffier = self.Ruffier()
+        self.timer_00 = self.Timer("timer_00",[(15, 1, -1, 0.25, 0)])
 
     
     class Ruffier:
@@ -66,6 +67,35 @@ class Model(Root):
                 return (4,)
             elif Model.resources.get('age_max') < arg:
                 return (5,)
+            
+    class Timer:
+        def __init__(self, name, intervals):
+            self.name = name
+            self.intervals = intervals
+            self.interval = 0
+            
+        def start(self):
+            self.begin = self.intervals[self.interval][0]
+            self.end = self.intervals[self.interval][1]
+            self.step = self.intervals[self.interval][2]
+            self.delay = self.intervals[self.interval][3]
+            self.parameter = self.intervals[self.interval][4]
+            self.tick()
+            # Clock.schedule_once(self.tick, self.delay)
+            
+        def tick(self, *args):
+            Model.controller.command((self.name, (self.begin, self.parameter)))
+            self.begin += self.step
+            if (self.step < 0 and self.begin < self.end) or (self.step > 0 and self.begin > self.end):
+                if self.interval < len(self.intervals) -1:
+                    self.interval += 1
+                    self.start()
+                else:
+                    Model.controller.command((self.name, False))
+            else:
+                Clock.schedule_once(self.tick, self.delay)
+    
+            
 
 
 if __name__ == '__main__':

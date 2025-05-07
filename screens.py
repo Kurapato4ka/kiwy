@@ -7,6 +7,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.popup import Popup
 
 
+
 class Scr_00(Root, Screen):
     def __init__(self):
         Screen.__init__(self, name = '00')
@@ -80,6 +81,16 @@ class Scr_01(Root, Screen):
 
     def setCMD(self):
         self.btn.on_press = lambda: self.controller.command(('next_02', (self.write.text)))
+        self.btn1.on_press = lambda: self.controller.command(('timer_00_start',))
+    
+    def stage_00(self, arg):
+        if arg:
+            count = arg[0]
+            print(arg)
+            color = arg[1]
+            self.txt2.text = str(count)
+        else:
+            self.txt2.text = ''
 
 
 
