@@ -68,7 +68,7 @@ class Scr_01(Root, Screen):
         self.layout.add_widget(self.layoutH5)
         self.txt = Label(text = get('txt_test1'))
         self.txt1 = Label(text = get('txt_result'))
-        self.txt2 = Label(text = '0', font_size = "100sp")
+        self.txt2 = Label(font_size = "100sp")
         self.write = TextInput()
         self.btn = Button(text = get('txt_continiu'))
         self.btn1 = Button(text = get('txt_starttest1'))
@@ -85,11 +85,15 @@ class Scr_01(Root, Screen):
     
     def stage_00(self, arg):
         if arg:
+            self.btn1.set_disabled(True)
+            self.btn.set_disabled(True)
             count = arg[0]
             print(arg)
             color = arg[1]
             self.txt2.text = str(count)
         else:
+            self.btn1.set_disabled(False)
+            self.btn.set_disabled(False)
             self.txt2.text = ''
 
 
@@ -113,7 +117,7 @@ class Scr_02(Root, Screen):
         self.layout.add_widget(self.layoutH3)
         self.layout.add_widget(self.layoutH4)
         self.txt = Label(text = get('txt_test2'))
-        self.txt2 = Label(text = '0', font_size = "100sp")
+        self.txt2 = Label(font_size = "100sp")
         self.btn = Button(text = get('txt_continiu'))
         self.btn1 = Button(text = get('txt_starttest2'))
         self.layoutH1.add_widget(self.txt)
@@ -128,11 +132,15 @@ class Scr_02(Root, Screen):
     
     def stage_00(self, arg):
         if arg:
+            self.btn1.set_disabled(True)
+            self.btn.set_disabled(True)
             count = arg[0]
             print(arg)
             color = arg[1]
             self.txt2.text = str(count)
         else:
+            self.btn1.set_disabled(False)
+            self.btn.set_disabled(False)
             self.txt2.text = ''
 
 
@@ -161,7 +169,7 @@ class Scr_03(Root, Screen):
         self.txt = Label(text = get('txt_test3'))
         self.txt1 = Label(text = get('txt_result'))
         self.txt2 = Label(text = get('txt_result1'))
-        self.txt3 = Label(text = '0', font_size = "100sp")
+        self.txt3 = Label(font_size = "100sp")
         self.write = TextInput()
         self.write1 = TextInput()
         self.btn = Button(text = get('txt_stop'))
@@ -181,16 +189,20 @@ class Scr_03(Root, Screen):
         self.btn1.on_press = lambda: self.controller.command(('timer_02_start',))
     
     def stage_00(self, arg):
+        print(arg)
         if arg:
+            self.btn1.set_disabled(True)
+            self.btn.set_disabled(True)
             count = arg[0]
-            print(arg)
             color = arg[1]
             if color == 1:
-                self.txt3.font_color = (0,0.8,0, 1)
+                self.txt3.color = (0,0.8,0, 1)
             elif color == 0:
-                self.txt3.font_color = (1,1,1,1)
+                self.txt3.color = (1,1,1,1)
             self.txt3.text = str(count)
         else:
+            self.btn1.set_disabled(False)
+            self.btn.set_disabled(False)
             self.txt3.text = ''
 
 

@@ -82,21 +82,32 @@ class Model(Root):
             self.step = self.intervals[self.interval][2]
             self.delay = self.intervals[self.interval][3]
             self.parameter = self.intervals[self.interval][4]
+            self.stop_flag = False
+            self.start_flag = False
             self.tick()
+            
             # Clock.schedule_once(self.tick, self.delay)
             
         def tick(self, *args):
-            Model.controller.command((self.name, (self.begin, self.parameter)))
-            self.begin += self.step
-            if (self.step < 0 and self.begin < self.end) or (self.step > 0 and self.begin > self.end):
-                if self.interval < len(self.intervals) -1:
-                    self.interval += 1
-                    self.start()
+            if self.stop_flag:
+                Model.controller.command((self.name, False))
+                self.interval = 0
+            elif not self.start_flag:
+                Model.controller.command((self.name, (self.begin, self.parameter)))
+                self.begin += self.step
+                if (self.step < 0 and self.begin < self.end) or (self.step > 0 and self.begin > self.end):
+                    if self.interval < len(self.intervals) -1:
+                        self.interval += 1
+                        self.start_flag = True
+                        # self.start()
+                        
+                    else:
+                        self.stop_flag = True
+                    self.timer = Clock.schedule_once(self.tick, self.delay)
                 else:
-                    Model.controller.command((self.name, False))
-            else:
-                Clock.schedule_once(self.tick, self.delay)
-    
+                    self.timer = Clock.schedule_once(self.tick, self.delay)
+            elif self.start_flag:
+                self.start()
             
 
 
